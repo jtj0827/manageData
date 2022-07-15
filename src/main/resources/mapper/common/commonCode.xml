@@ -1,0 +1,15 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kiwontech.centercontrol.database.mybatis.mapper.common.CommonCodeMapper">
+
+    <!-- LINE :: 코드 전체 뎁스 조회 -->
+    <select id="findCodeNamesByCode" parameterType="String" resultType="commonCode">
+        SELECT d3.CODE_EXP as codeName3
+             , d2.CODE_EXP as codeName2
+             , d1.CODE_EXP as codeName1
+          FROM common.tcommon_code d3 LEFT OUTER JOIN common.tcommon_code d2 ON d3.TOP_CODE = d2.CODE
+          LEFT OUTER JOIN common.tcommon_code d1 ON d2.TOP_CODE = d1.CODE
+         WHERE d3.CODE = #{code}
+    </select>
+
+</mapper>

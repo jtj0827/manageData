@@ -1,0 +1,61 @@
+@charset "utf-8";
+
+select, input {height:30px}
+/* reset */
+body, div,
+h1, h2, h3, h4, h5, h6,
+ul, ol, li, dl, dt, dd,
+table, caption, tr, td, th,
+form, fieldset, legend, p,
+address, blockquote {margin:0; padding:0;} /* 사용한 블록요소 모두 표기 */
+h1, h2, h3, h4, h5, h6 {font-size:100%;}
+address, em {font-style:normal;}
+fieldset, img {border:0 none;}
+table {border-collapse:collapse; border-spacing:0;}
+ol, ul, li {list-style:none;}
+/* 마크업을 하지 않은 상태와 같음 */
+hr {display:none;}
+
+/* base */
+
+/** {font-family:'나눔고딕', NanumGothic, Nanum Gothic, 'Nanum Gothic', 'NanumGothic', '돋움', Dotum, sans-serif;}*/
+
+
+html {
+    font-size:14px;
+    background-color:#fff;
+    color:#333;
+    height:100%;
+}
+body {
+    font-size:14px;
+    background-color:#fff;
+    color:#333;
+    height:100%;
+    overflow:auto;
+}
+a {color:#333; text-decoration:none;}
+a:hover, a:focus {text-decoration:none;}
+
+img {vertical-align:middle;}
+select {vertical-align:middle; height:30px; border:1px solid #d9d9d9; box-sizing:border-box; color:#616161; font-size:12px;}
+input[type=text], input[type=button] {vertical-align:middle;/* border:1px solid #d9d9d9; height:34px; box-sizing:border-box; color:#616161; font-size:13px;*/}
+input[type=text] {/*text-indent:10px;*/}
+input[type=password] {vertical-align:middle;/* font-size:13px;*/}
+input[type=password] {/*text-indent:10px;*/}
+input[type=button], input[type=submit] {cursor:pointer;}
+input[type=checkbox] {vertical-align:middle;}
+input[type=radio] {vertical-align:middle; margin:0 5px 0 0; padding:0; width:14px; height:14px;}
+textarea {vertical-align:middle; background:#f4f4f4; border:1px solid #d9d9d9; box-sizing:border-box; color:#616161;}
+input[type="radio"], input[type="checkbox"] {margin:0 5px 0 0}
+
+/* 화면에서는 가려야 하지만 스크린 리더가 읽어야 하는 경우 */
+.skip {
+    text-indent:-9000px;
+    width:0; height:0;
+    line-height:0; font-size:0;}
+
+caption {position:absolute; text-indent:-9999; width:0; height:0; line-height:0; font-size:0;}
+table th {font-size:13px;}
+table td {font-size:12px;}
+table th {font-size:13px;}

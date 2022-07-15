@@ -1,0 +1,34 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kiwontech.centercontrol.database.mybatis.mapper.common.LoginLogMapper">
+
+    <select id="findByDto" parameterType="LoginLog" resultType="LoginLog">
+        SELECT lol.*
+          FROM tlogin_log lol
+         WHERE 1=1
+           AND lol.reg_date <![CDATA[>=]]> #{searchStartDate}
+           AND lol.reg_date <![CDATA[<=]]> #{searchEndDate}
+        <include refid="dynamicWhereCause"/>
+         ORDER BY lol.reg_date DESC
+         LIMIT #{firstIndex}, #{pageSize}
+    </select>
+
+    <select id="countByDto" parameterType="LoginLog" resultType="int">
+        SELECT count(*)
+          FROM tlogin_log lol
+         WHERE 1=1
+           AND lol.reg_date <![CDATA[>=]]> #{searchStartDate}
+           AND lol.reg_date <![CDATA[<=]]> #{searchEndDate}
+        <include refid="dynamicWhereCause"/>
+    </select>
+
+    <sql id="dynamicWhereCause">
+        <if test="codeArray != null">
+            AND lol.login_code IN
+            <foreach collection="codeArray" item="code" separator="," open="(" close=")">
+                #{code}
+            </foreach>
+        </if>
+    </sql>
+
+</mapper>

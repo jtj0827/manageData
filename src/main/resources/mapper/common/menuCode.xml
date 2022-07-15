@@ -1,0 +1,82 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rng.managedata.database.mybatis.mapper.common.MenuCodeMapper">
+
+    <!-- 상단 메뉴 (1뎁스) 조회 -->
+    <select id="findTopMenuByAccountIdx" resultType="menuCode">
+         SELECT menu.idx
+              , menu.code
+              , menu.depth
+              , menu.name
+              , a.url
+           FROM tmenu_code menu
+          INNER JOIN (
+                      SELECT sub.top_code, sub.url
+						FROM tmenu_code sub
+					   INNER JOIN(
+								  SELECT menu.top_code AS top_code, min(menu.sort) AS sort
+								    FROM tmenu_code menu
+								   WHERE depth = 2
+								   GROUP BY menu.top_code
+								  ) auth ON sub.top_code = auth.top_code AND sub.sort = auth.sort
+                      ) a ON menu.code = a.top_code
+          WHERE menu.DEPTH = 1
+            AND menu.USE_YN = 1
+          ORDER BY menu.sort ASC
+    </select>
+
+    <select id="findTopMenu" resultType="menuCode">
+        SELECT menu.*
+          FROM tmenu_code menu
+         WHERE menu.DEPTH = 1
+           AND menu.USE_YN = 1
+           AND menu.AUTH = 10
+         ORDER BY menu.sort ASC
+    </select>
+
+    <!-- url 기준으로 메뉴 조회 -->
+    <select id="findOneByUrl" parameterType="String" resultType="MenuCode">
+        SELECT menu.*
+          FROM tmenu_code menu
+         WHERE menu.URL = #{url}
+           AND menu.DEPTH > 1
+           AND menu.USE_YN = 1
+           AND menu.AUTH = 10
+         ORDER BY menu.DEPTH DESC
+         LIMIT 1
+    </select>
+
+    <!-- 현재 메뉴의 code 기준으로 1~3 뎁스 메뉴 코드 조회 -->
+    <select id="findByCode" parameterType="String" resultType="menuCode">
+        SELECT d3.CODE AS code3
+             , d2.CODE AS code2
+             , d1.CODE AS code1
+          FROM tmenu_code d3
+          LEFT OUTER JOIN tmenu_code d2 ON d3.TOP_CODE = d2.code AND d2.USE_YN = 1
+          LEFT OUTER JOIN tmenu_code d1 ON d2.TOP_CODE = d1.code AND d1.USE_YN = 1
+         WHERE d3.CODE = #{code}
+           AND d3.USE_YN = 1
+           AND d3.DEPTH > 1
+           AND d3.AUTH = 10
+    </select>
+
+    <!-- 좌측 메뉴 조회 -->
+    <select id="findLeftMenu" parameterType="String" resultType="menuCode">
+        SELECT d3.*
+          FROM tmenu_code d2
+          LEFT OUTER JOIN tmenu_code d3 ON (d3.DEPTH = 3 AND d2.CODE = d3.TOP_CODE AND d3.USE_YN = 1)
+                                        OR (d3.DEPTH = 2 AND d2.CODE = d3.CODE AND d3.USE_YN = 1)
+         WHERE d2.DEPTH > 1
+           AND d2.TOP_CODE = #{topCode}
+           AND d2.USE_YN = 1
+           AND d2.AUTH = 10
+         ORDER BY d2.sort, d2.code, d3.top_code, d3.sort
+    </select>
+
+    <select id="findAllOneDepthCode" resultType="String">
+        SELECT menu.code
+          FROM tmenu_code menu
+         WHERE menu.DEPTH = 1
+    </select>
+
+</mapper>

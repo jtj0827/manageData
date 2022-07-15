@@ -1,0 +1,14 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kiwontech.centercontrol.database.mybatis.mapper.common.AccountMenuAuthMapper">
+
+    <!-- 관리자 계정 카운트 조회 -->
+    <select id="findCodeByAccountIdx" parameterType="Long" resultType="String">
+        SELECT menu_code
+        FROM taccount_menu_auth
+        WHERE account_idx = #{accountIdx}
+    </select>
+
+
+
+</mapper>

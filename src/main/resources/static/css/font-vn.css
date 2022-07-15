@@ -1,0 +1,80 @@
+@font-face {
+    font-family: 'HelveticaNeue';
+    font-style: normal;
+    font-weight: 100;
+    src: url(../fonts/HelveticaNeue-Light.eot);
+    src: url(../fonts/HelveticaNeue-Light.woff) format('embedded-opentype'),
+    url(../fonts/HelveticaNeue-Light.eot) format('otf');
+}
+@font-face {
+    font-family: 'HelveticaNeue';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../fonts/HelveticaNeue.eot);
+    src: url(../fonts/HelveticaNeue.woff) format('embedded-opentype'),
+    url(../fonts/HelveticaNeue.eot) format('otf');
+}
+
+@font-face {
+    font-family: 'HelveticaNeue';
+    font-style: normal;
+    font-weight: 600;
+    src: url(../fonts/HelveticaNeue-Bold.eot);
+    src: url(../fonts/HelveticaNeue-Bold.woff) format('embedded-opentype'),
+    url(../fonts/HelveticaNeue-Bold.eot) format('otf');
+}
+
+@font-face {
+    font-family: 'HelveticaNeue';
+    font-style: normal;
+    font-weight: 900;
+    src: url(../fonts/HelveticaNeue-Bold.eot);
+    src: url(../fonts/HelveticaNeue-Bold.woff) format('embedded-opentype'),
+    url(../fonts/HelveticaNeue-Bold.eot) format('otf');
+}
+* h1, h2, h3, h4, h5, h6, html, body, input{font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';}
+
+/*@font-face {*/
+/*font-family: 'SegoeUI';*/
+/*font-style: normal;*/
+
+/*font-weight: 100;*/
+/*src: url(../fonts/SegoeUI-Light.eot);*/
+/*src: url(../fonts/SegoeUI-Light.woff) format('embedded-opentype'),*/
+/*url(../fonts/SegoeUI-Light.eot) format('otf');*/
+/*}*/
+/*@font-face {*/
+/*font-family: 'SegoeUI';*/
+/*font-style: normal;*/
+/*font-weight: 400;*/
+/*src: url(../fonts/SegoeUI.eot);*/
+/*src: url(../fonts/SegoeUI.woff) format('embedded-opentype'),*/
+/*url(../fonts/SegoeUI.eot) format('otf');*/
+/*}*/
+
+/*@font-face {*/
+/*font-family: 'SegoeUI';*/
+/*font-style: normal;*/
+/*font-weight: 600;*/
+/*src: url(../fonts/SegoeUI-Bold.eot);*/
+/*src: url(../fonts/SegoeUI-Bold.woff) format('embedded-opentype'),*/
+/*url(../fonts/SegoeUI-Bold.eot) format('otf');*/
+/*}*/
+
+/*@font-face {*/
+/*font-family: 'SegoeUI';*/
+/*font-style: normal;*/
+/*font-weight: 800;*/
+/*src: url(../fonts/SegoeUI-Semibold.eot);*/
+/*src: url(../fonts/SegoeUI-Semibold.woff) format('embedded-opentype'),*/
+/*url(../fonts/SegoeUI-Semibold.eot) format('otf');*/
+/*}*/
+/*@font-face {*/
+/*font-family: 'SegoeUI';*/
+/*font-style: normal;*/
+/*font-weight: 900;*/
+/*src: url(../fonts/SegoeUIBlack.eot);*/
+/*src: url(../fonts/SegoeUIBlack.woff) format('embedded-opentype'),*/
+/*url(../fonts/SegoeUIBlack.eot) format('otf');*/
+/*}*/
+/** h1, h2, h3, h4, h5, h6, html, body, input{font-family:'SegoeUI', sans-serif;}*/

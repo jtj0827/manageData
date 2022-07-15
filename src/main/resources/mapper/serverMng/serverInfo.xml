@@ -1,0 +1,29 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rng.managedata.database.mybatis.mapper.serverMng.ServerInfoMapper">
+
+    <!-- 관리자 계정 카운트 조회 -->
+    <select id="findByDto" parameterType="ServerInfo" resultType="ServerInfo">
+        SELECT svr.*
+        FROM tserver_info svr
+        WHERE svr.del_status = false
+        LIMIT #{firstIndex}, #{pageSize}
+    </select>
+    <select id="countByDto" parameterType="ServerInfo" resultType="int">
+        SELECT count(*)
+        FROM tserver_info svr
+        WHERE svr.del_status = false
+    </select>
+
+    <!--<select id="serverDuplicateCheck" parameterType="ServerInfo" resultType="int">
+        SELECT count(*)
+          FROM tserver_info svr
+        WHERE svr.del_status = false
+          AND(
+              <if test="ip != null and ip != ''">
+                  svr.ip == #{ip} OR
+              </if>
+              svr.name == #{name}
+             )
+    </select>-->
+</mapper>

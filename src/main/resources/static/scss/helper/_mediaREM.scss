@@ -1,0 +1,76 @@
+// Break Point (Desktop First 기준 내림차순 설정)
+$desktop-l-width	: rem(1440+1);
+$desktop-s-width    : rem(1200+1);
+$tablet-l-width		: rem(1024);
+$tablet-m-width		: rem(990);
+$tablet-s-width		: rem(768);
+$mob-l-width		: rem(640);
+$mob-m-width		: rem(425);
+$mob-s-width		: rem(375);
+$mob-xs-width		: rem(320);
+
+// PC large
+@mixin media-pc-large {
+  @media screen and (max-width: #{$desktop-l-width}) {
+    @content;
+  }
+}
+
+@mixin media-pc-small {
+  @media screen and (max-width: #{$desktop-s-width}) {
+    @content;
+  }
+}
+
+// --------------------------------------------------
+
+// 태블릿
+@mixin media-tab {
+  @media screen and (max-width: #{$tablet-l-width}) {
+    @content;
+  }
+}
+
+// 태블릿(990)
+@mixin media-tab-mid {
+  @media screen and (max-width: #{$tablet-m-width}) {
+    @content;
+  }
+}
+
+// 모바일(768)
+@mixin media-mob {
+  @media screen and (max-width: #{$tablet-s-width}) {
+    @content;
+  }
+}
+// 모바일 large(640)
+@mixin media-mob-large {
+  @media screen and (max-width: #{$mob-l-width}) {
+    @content;
+  }
+}
+// 모바일 mid(425)
+@mixin media-mob-mid {
+  @media screen and (max-width: #{$mob-m-width}) {
+    @content;
+  }
+}
+// 모바일 small(375)
+@mixin media-mob-small {
+  @media screen and (max-width: #{$mob-s-width}) {
+    @content;
+  }
+}
+// 모바일 x-small
+@mixin media-mob-xsmall {
+  @media screen and (max-width: #{$mob-xs-width}) {
+    @content;
+  }
+}
+// 세로디바이스 (세로가 가로보다 클때)
+@mixin media-port{
+  @media screen and (orientation:portrait) {
+    @content;
+  }
+}

@@ -1,0 +1,16 @@
+$browser-context: 16;
+$media-tab-context: 14;
+
+@function em($pixels, $context: $browser-context){
+  //@return #{$pixels/$context}em;
+
+  //em/rem단위 사용안함
+  @return #{$pixels}px;
+}
+
+@function rem($pixels){
+  //@return #{$pixels/$browser-context}rem;
+
+  //em/rem단위 사용안함
+  @return #{$pixels}px;
+}

@@ -1,0 +1,40 @@
+body{
+  line-height:normal;
+}
+
+.form-control{
+  height:30px;
+}
+
+input[type="radio"], input[type="checkbox"]{
+  margin:0 4px;
+}
+
+.input-group{
+  &.input-group-custom{
+    display:inline-block;
+    padding-left:35px;
+
+    .input-group-addon{
+      display:inline-block;
+      position:absolute;
+      top:0;
+      left:0;
+      padding:5px 12px;
+      @include wh(37px, 30px);
+      border-right:1px solid $ddd;
+    }
+
+    .form-control{
+      display:inline-block;
+      height:30px;
+      font-size:13px;
+      box-shadow:none;
+      padding:5px 10px;
+    }
+  }
+}
+
+.btn:hover, .btn:focus{
+  color:inherit;
+}

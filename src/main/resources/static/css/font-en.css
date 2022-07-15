@@ -1,0 +1,44 @@
+@font-face {
+    font-family: 'Exo2';
+    font-style: normal;
+    font-weight: 100;
+    src: url(../fonts/Exo2-Light.otf);
+    src: url(../fonts/Exo2-Light.otf?#iefix) format('embedded-opentype'),
+    url(../fonts/Exo2-Light.otf) format('otf');
+}
+@font-face {
+    font-family: 'Exo2';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../fonts/Exo2-Regular.otf);
+    src: url(../fonts/Exo2-Regular.otf?#iefix) format('embedded-opentype'),
+    url(../fonts/Exo2-Regular.otf) format('otf');
+}
+
+@font-face {
+    font-family: 'Exo2';
+    font-style: normal;
+    font-weight: 600;
+    src: url(../fonts/Exo2-Bold.otf);
+    src: url(../fonts/Exo2-Bold.otf?#iefix) format('embedded-opentype'),
+    url(../fonts/Exo2-Bold.otf) format('otf');
+}
+
+@font-face {
+    font-family: 'Exo2';
+    font-style: normal;
+    font-weight: 800;
+    src: url(../fonts/Exo2-ExtraBold.otf);
+    src: url(../fonts/Exo2-ExtraBold.otf?#iefix) format('embedded-opentype'),
+    url(../fonts/Exo2-ExtraBold.otf) format('otf');
+}
+@font-face {
+    font-family: 'Exo2';
+    font-style: normal;
+    font-weight: 800;
+    src: url(../fonts/Exo2-Black.otf);
+    src: url(../fonts/Exo2-Black.otf?#iefix) format('embedded-opentype'),
+    url(../fonts/Exo2-Black.otf) format('otf');
+}
+/** h1, h2, h3, h4, h5, h6, html, body, input{font-family:'Exo2', sans-serif;}*/
+* h1, h2, h3, h4, h5, h6, html, body, input{font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, Helvetica, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';}

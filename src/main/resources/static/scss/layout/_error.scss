@@ -1,0 +1,49 @@
+.b-errorPage{
+  position: relative;
+  width:100vw;
+  height:100vh;
+}
+.b-errorPage-box{
+  padding: 0 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -70%);
+  text-align: center;
+  min-width:550px;
+  img{
+    width:200px;
+    margin-bottom: 50px;
+  }
+  p{
+    font-size: 20px;
+    color: #666;
+    font-weight:600;
+    line-height:1.8;
+  }
+}
+@media screen and (max-width: 610px){
+  .b-errorPage-box{
+    padding: 0 10px;
+    min-width:80%;
+    img{
+      width: 45%;
+      margin-bottom: 30px;
+    }
+    p{
+      font-size: 15px;
+    }
+  }
+}
+@media screen and (max-width: 390px){
+  .b-errorPage-box{
+    p{
+      font-size: 14px;
+    }
+  }
+}
+@media screen and (max-width: 330px){
+  .b-errorPage-box{
+    padding: 0 5px;
+  }
+}

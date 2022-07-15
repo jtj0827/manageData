@@ -1,0 +1,110 @@
+//공통 버튼 스타일
+%btn{
+  @include reset-btn();
+}
+
+.btn-area{
+  text-align:center;
+  padding:30px 0;
+}
+.btn-area-r{
+  text-align:right;
+}
+
+/*버튼타입*/
+.btn-base{
+  @extend %btn;
+  height:30px;
+  padding:0 8px;
+  min-width:55px;
+  border:1px solid $ddd;
+
+  &.dis-n{
+    display:none;
+  }
+}
+
+.btn-baseRound{
+  @extend %btn;
+  height:30px;
+  padding:0 8px;
+  min-width:55px;
+  border:1px solid $ddd;
+
+  @include border-radius(4px);
+
+  &.dis-n{
+    display:none;
+  }
+}
+
+/*버튼크기*/
+.btn-large{
+  @include wh(false, 45px, 45px);
+  min-width:110px;
+  font-size:15px;
+  font-weight:$fwM;
+}
+
+/*필터타입*/
+.btn-filter{
+  text-align:center;
+  cursor:default;
+  @include wh(90px, 23px, 23px);
+  @include font-style(12px, $white, $fwB);
+}
+
+.like-btn{
+  .item.btn-filter{
+    cursor:pointer;
+  }
+}
+
+.fc-red, .fc-rm{
+  color:#ff4b21;
+}
+.fc-block{
+  color:#e74701;
+}
+.fc-blue{
+  color:#0b94d1;
+}
+
+/*버튼 background color*/
+.btn-search {
+  background: $main-sblue;
+  border:1px solid $main-sblue;
+  @include font-style(false, $white, $fwM);
+}
+
+.btn-detail{
+  background: $aaa;
+  border:1px solid $aaa;
+  @include font-style(false, $white, $fwM);
+}
+
+.btn-add{
+  background: $gray5;
+  border:1px solid $gray5;
+  @include font-style(false, $white, $fwM);
+}
+.btn-rm{
+  background:$red;
+  border:1px solid $red;
+  @include font-style(false, $white, $fwM);
+}
+
+.btn-bm{
+  background:#0090db;
+  border:1px solid #0090db;
+  @include font-style(false, $white, $fwM);
+}
+
+.button-wrap{
+  display: flex;
+  width: 115px;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+

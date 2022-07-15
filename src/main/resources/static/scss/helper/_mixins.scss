@@ -1,0 +1,278 @@
+//20190227 밍쵸 작성 
+
+//@include wh(넓이, 높이, line-height);
+@mixin wh($width: false, $height: false, $lh: false) {
+	@if $width { width: $width; }
+	@if $height { height: $height;}
+	@if $lh { line-height: $lh; }
+}
+
+@mixin text-shadow(){
+	text-shadow:2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+//@include text-ell()
+@mixin text-ell() {
+	display:inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin text-ell2(){
+	word-wrap:break-word;
+	display:-webkit-box;
+	overflow: hidden;
+	-webkit-line-clamp:2;
+	-webkit-box-orient:vertical;
+}
+
+//@include text-ell()
+@mixin text-ell-po() {
+	display:block;
+	display: -webkit-box;
+	word-break:break-all;
+	overflow: hidden;
+	position: relative;
+	padding-right: 1em;
+
+	&:before{
+		content: '...';
+		position: absolute;
+		right: 3px;
+		bottom: 0;
+		text-decoration:none;
+	}
+
+	&:after{
+		content: '';
+		position: absolute;
+		right: 0;
+		width: 20px;
+		height: 1em;
+		margin-top: 0.2em;
+		background: $white;
+	}
+}
+
+//@include text-ell()
+@mixin webkit-reset() {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	-webkit-border-radius: 0;
+	border-radius:0;
+}
+
+//@include position(포지션, top, right, bottom, left);
+@mixin position($position, $top: false, $right: false, $bottom: false, $left: false) {
+	position: $position;
+	@if $top { top: $top; }
+	@if $right { right: $right;}
+	@if $bottom { bottom: $bottom; }
+	@if $left { left: $left;}
+}
+
+
+@mixin bg-cover($imgpath){
+	background : {
+		position:center;
+		size	:cover;
+		image	:url($imgpath);
+		repeat: no-repeat;
+	}
+}
+
+
+@mixin bg-contain($imgpath){
+	background : {
+		position:center;
+		size	:contain;
+		image	:url($imgpath);
+		repeat: no-repeat;
+	}
+}
+
+@mixin font-hover($fontcolor, $hovercolor:false){
+	color: $fontcolor;
+
+	@if $hovercolor{
+		&:hover, &:active{
+			color: $hovercolor;
+		}
+	} @else {
+		&:hover, &:active {
+			color: darken($fontcolor,30%);
+			transition: all 0.3s ease;
+		}
+	}
+}
+//@include background(색상, 이미지경로, position, repeat);
+@mixin background($color: false, $imgpath: false, $position:0 0, $repeat:no-repeat, $size: auto){
+	//배경이미지 있을때
+	@if $imgpath{
+
+		//배경 색상있을때
+		@if $color {
+
+			background: {
+				color: $color ;
+				image: url($imgpath);
+				position: $position;
+				repeat: $repeat;
+				size: $size;
+			}
+
+		//배경 색상 없을때
+		} @else{
+			background: {
+				image: url($imgpath);
+				position: $position;
+				repeat: $repeat;
+				size: $size;
+			}
+		}
+
+	//배경 이미지 없을때
+	} @else{
+		background : $color;
+	}
+}
+//@include background(색상, 이미지경로, position, repeat);
+@mixin background-hover($color: false, $imgpath: false, $position:0 0, $repeat:no-repeat, $size:initial){
+
+	//배경이미지 있을때
+	@if $imgpath{
+
+			//배경 색상있을때
+			@if $color {
+				
+				background: { 
+					color: $color ;
+					image: url($imgpath);
+					position: $position;
+					repeat: $repeat
+				}
+
+				&:hover {
+					background: {
+						color:  darken($color,6%);
+						image: url($imgpath);
+						position: $position;
+						repeat: $repeat
+					}
+					transition: all 0.3s ease;
+				}
+				&:active {
+					background: {
+						color:  darken($color,20%);
+						image: url($imgpath);
+						position: $position;
+						repeat: $repeat
+					}
+				} 
+
+			//배경 색상 없을때
+			} @else{
+				background: {
+					image: url($imgpath);
+					position: $position;
+					repeat: $repeat;
+					size: $size;
+				}
+			}
+
+	//배경 이미지 없을때
+	} @else{
+			background : $color;
+			&:hover {
+				background: darken($color,6%);
+				transition: all 0.3s ease;
+			}
+			&:active {
+				background: darken($color,20%);
+			} 
+	}
+}
+
+@mixin list-style($type, $position: inside, $imgpath:false){
+	list-style-type : $type;
+	list-style-position: $position;
+	@if $imgpath {
+		list-style-image: url($imgpath);
+	}
+}
+@mixin reset-btn(){
+	display:inline-block; 
+	outline:none;
+	border:none;
+	cursor:pointer;
+	box-sizing:border-box;
+}
+
+@mixin reset-border(){
+	border:none
+}
+// @include font-style(size, color, weight);
+@mixin font-style($size: false, $color: false, $weight: false) {
+	@if $size { font-size: $size; }
+	@if $color { color: $color; }
+	@if $weight { font-weight: $weight; }
+}
+
+@mixin border-radius($radius: 3px){
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+}
+
+@mixin box-shadow($left, $top, $radius, $color) {
+	box-shadow: $left $top $radius $color;
+	-webkit-box-shadow: $left $top $radius $color;
+	-moz-box-shadow: $left $top $radius $color;
+}
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin max-wrap($max-w){
+	//width: $max-w;
+	max-width: $max-w;
+	margin: 0 auto;
+}
+
+@mixin po-midXY(){
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%, -50%);
+}
+
+@mixin po-midY(){
+	position:absolute;
+	top:50%;
+	transform:translate(0, -50%);
+}
+@mixin po-midX(){
+	position:absolute;
+	left:50%;
+	transform:translate(-50%, 0);
+}
+
+@mixin po-reset(){
+	position:static;
+	transform:translate(0,0);
+}

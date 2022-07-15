@@ -1,0 +1,117 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kiwontech.centercontrol.database.mybatis.mapper.common.AccountMapper">
+
+    <!-- 관리자 계정 카운트 조회 -->
+    <select id="countByDtoStepIsK" parameterType="account" resultType="int">
+        SELECT count(*)
+        FROM tAccount act
+        WHERE act.step = 'K'
+        AND (
+             act.partner_idx IS NULL OR
+             act.partner_idx = 0
+            )
+        <include refid="dynamicWhereCause2"/>
+    </select>
+
+    <!-- 계정 리스트 조회 (파트너사 관리에서 쓰임) -->
+    <select id="findAllByDto" parameterType="account" resultType="account">
+        SELECT act.*
+          FROM tAccount act
+         WHERE 1=1
+               <include refid="dynamicWhereCause"/>
+         ORDER BY act.IDX DESC
+         LIMIT #{firstIndex}, #{pageSize}
+    </select>
+
+    <!-- 관리자 계정 리스트 조회 (관리자 관리에서 쓰임) -->
+    <select id="findAllByDtoAdmin" parameterType="account" resultType="account">
+        SELECT act.*
+          FROM tAccount act
+         WHERE 1=1
+           AND (
+                act.partner_idx IS NULL OR
+                act.partner_idx = 0
+                )
+           AND act.step = 'K'
+                <include refid="dynamicWhereCause2"/>
+        ORDER BY act.idx DESC
+        LIMIT #{firstIndex}, #{pageSize}
+    </select>
+
+    <!-- 계정 카운트 조회 -->
+    <select id="countByDto" parameterType="account" resultType="int">
+        SELECT count(*)
+          FROM tAccount act
+         WHERE 1=1
+               <include refid="dynamicWhereCause"/>
+    </select>
+
+    <!-- 파트너사 관리에에서 쓰는 Where절 -->
+    <sql id="dynamicWhereCause">
+        <if test="partnerIdx != null and partnerIdx > 0">
+            AND act.PARTNER_IDX = #{partnerIdx}
+        </if>
+        <if test="searchText != null and searchText != ''">
+            <choose>
+                <when test='searchType == "id"'>
+                    AND act.ID LIKE concat('%', #{searchText}, '%')
+                </when>
+                <when test='searchType == "name"'>
+                    AND act.NAME LIKE concat('%', #{searchText}, '%')
+                </when>
+                <otherwise>
+                    AND (act.ID LIKE concat('%', #{searchText}, '%') OR act.NAME LIKE concat('%', #{searchText}, '%'))
+                </otherwise>
+            </choose>
+        </if>
+    </sql>
+
+    <!-- 관리자 관리에서 쓰이는 Where절 -->
+    <sql id="dynamicWhereCause2">
+
+        <if test="searchText != null and searchText != ''">
+            <choose>
+                <when test="searchType == 'id'">
+                    AND act.ID LIKE concat('%', #{searchText}, '%')
+                </when>
+                <when test="searchType == 'name'">
+                    AND act.NAME LIKE concat('%', #{searchText}, '%')
+                </when>
+                <otherwise>
+                    AND (
+                    act.ID LIKE concat('%', #{searchText}, '%') OR
+                    act.NAME LIKE concat('%', #{searchText}, '%')
+                    )
+                </otherwise>
+            </choose>
+        </if>
+        <if test='denyIp == "T"'>
+            AND act.DENY_IP = 'T'
+        </if>
+        <if test='denyIp == "F"'>
+            AND act.DENY_IP = 'F'
+        </if>
+
+    </sql>
+
+    <select id="countByDtoForAuth" parameterType="account" resultType="int">
+        SELECT count(*)
+          FROM tAccount act
+         WHERE act.auth = #{auth}
+           AND act.partner_idx IS NULL
+            OR act.partner_idx = 0
+           AND act.step = 'K'
+               <include refid="dynamicWhereCause2"/>
+    </select>
+
+    <select id="findByDtoForAuth" parameterType="account" resultType="account">
+        SELECT act.*
+          FROM tAccount act
+         WHERE act.auth = #{auth}
+           AND act.partner_idx IS NULL
+            OR act.partner_idx = 0
+         ORDER BY act.IDX DESC
+    </select>
+
+</mapper>

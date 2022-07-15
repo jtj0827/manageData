@@ -1,0 +1,40 @@
+@import "../helper/mixins";        //믹스인
+@import "../helper/function";      //함수
+@import "../helper/media";         //반응형
+
+@import "../base/commonVariables";        //색상, index
+
+@import "../base/fonts";         //폰트
+@import "../base/fontsEn";       //폰트
+@import "../base/fontsJp";       //폰트
+@import "../base/fontsVn";       //폰트
+
+@import "../base/reset";         //리셋
+@import "../base/commonClass";   //기본클래스들
+
+//라이브러리
+@import "../lib/swiper";       //스와이퍼
+
+//커스텀
+@import "../custom/colorsCustom"; //색상커스텀
+@import "../custom/resetCustom";  //리셋커스텀
+@import "../custom/scrollbar";    //스크롤바 스타일
+@import "../custom/bootstrapCustom";    //부트스트랩 커스텀
+@import "../custom/loadingCustom";      //로딩바 커스텀
+@import "../custom/multipleSelectbox";      //멀티플셀렉트박스
+
+//버튼, 테마, 아이콘
+@import "../component/button";
+
+@import "../layout/variables";  //영역 관련 변수
+@import "../layout/common";     //공통스타일
+@import "../layout/layout";     //공통레이아웃
+@import "../layout/headerLeft"; //헤더, 레프트메뉴 스타일
+@import "../layout/slidemini";  //메뉴 닫았을때 스타일
+@import "../layout/error";  //에러페이지 스타일
+@import "../layout/activeBoard";//액키브 보드 스타일
+
+
+/*@import "layout/layer";   //레이어마스크*/
+
+//레이아웃

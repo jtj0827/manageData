@@ -1,0 +1,262 @@
+//레이아웃
+body, html{
+  &.overflow-h{
+    overflow:hidden;
+  }
+  &.overflow-yh{
+    overflow-y:hidden;
+  }
+}
+
+.navbar-btn{
+  background:$header-black;
+  background:rgba(52,59,67,0.5);
+  @include wh(38px, 38px);
+  @include border-radius(5px);
+  position:fixed;
+  bottom:20px;
+  left:15px;
+  z-index:$left-top-zidx;
+
+  span{
+    display:block;
+    @include wh(20px, 2px);
+    background:white;
+    margin:0 auto 4px;
+
+    &:last-child{
+      margin-bottom:0;
+    }
+  }
+}
+
+.default-input{
+  min-height:30px;
+  @include font-style(13px, $gray6);
+
+  &::placeholder{
+    @include font-style(13px, $ddd);
+  }
+
+  &[readonly]{
+    background:$default-bg-color;
+  }
+}
+
+.default-input-sp{
+  display:inline-block;
+  @include wh(false, 30px, 30px);
+  padding:0 5px;
+  border:1px solid $ddd;
+  @include font-style(13px, $gray6);
+  background:$default-bg-color;
+  vertical-align:middle;
+}
+
+.input-group--leftBtn{
+  position:relative;
+
+  .btn{
+    position:absolute;
+    top:0;
+    right:0;
+  }
+}
+  .input-group--hasBtnL{
+    padding-right:90px;
+  }
+
+.inline-group{
+  display:inline-block;
+  vertical-align:middle;
+}
+
+.b-form-group{
+  &.lst{
+    margin-bottom:-8px;
+  }
+  &.dis-f{
+    display: flex;
+  }
+  &.j-SB{
+    justify-content: space-between;
+  }
+}
+  .b-form-group__item{
+    display:inline-block;
+    margin-right:15px;
+    margin-bottom:10px;
+    vertical-align:middle;
+
+    &>label{
+      display:inline-block;
+      font-weight:$fwM;
+      vertical-align:middle;
+    }
+
+    &.mr0{
+      margin-right: 0px;
+    }
+  }
+
+
+.checkbox-group{
+  font-size:13px;
+  &.fixedW{
+    label{
+      min-width:65px;
+    }
+  }
+
+  &.fixedH{
+    label{
+      margin:5px 0 10px;
+    }
+  }
+  label{
+    position:relative;
+    padding-left:24px;
+    display:inline-block;
+    vertical-align:middle;
+    line-height:normal;
+    height:18px;
+  }
+
+  input[type="radio"], input[type="checkbox"]{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0px;
+    width: 0px;
+  }
+
+  .checkmark{
+    position: absolute;
+    top: 0;
+    left: 0;
+    @include wh(16px, 16px);
+    cursor: pointer;
+    background-color: #fff;
+    border:1px solid $ddd;
+
+    &:hover{
+      border:1px solid $gray9;
+    }
+
+    &:after{
+      display: block;
+      content: "";
+      cursor: pointer;
+      @include wh(4px, 8px);
+      border: solid $ccc;
+      border-width: 0 1px 1px 0;
+      position:absolute;
+      top:45%;
+      left:50%;
+      -webkit-transform: translate(-50%, -50%) rotate(45deg);
+      -ms-transform: translate(-50%, -50%) rotate(45deg);
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+  }
+
+  input:checked ~ .checkmark {
+    background:$point-sblue;
+    border:none;
+
+    &:after{
+      border-color:white;
+    }
+  }
+
+  .radiomark{
+    position: absolute;
+    top: 0;
+    left: 0;
+    @include wh(18px, 18px);
+    @include border-radius(20px);
+    cursor: pointer;
+    background-color: #fff;
+    border:1px solid $ddd;
+
+    &:hover{
+      border:1px solid $gray9;
+    }
+
+    &:after{
+      display: block;
+      content: "";
+      cursor: pointer;
+      @include wh(7px, 7px);
+      @include border-radius(10px);
+      background:$white;
+      position:absolute;
+      top:50%;
+      left:50%;
+      -webkit-transform: translate(-50%, -50%) rotate(45deg);
+      -ms-transform: translate(-50%, -50%) rotate(45deg);
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+  }
+
+
+  input:checked ~ .radiomark {
+    &:hover{
+      border-color:$ddd;
+    }
+    &:after{
+      background:$point-sblue;
+    }
+  }
+}
+
+//멀티로우
+.checkbox-group.multi{
+  label{
+    margin-right:10px;
+  }
+}
+
+//라벨없음
+.checkbox-group.only{
+  label{
+    padding-left:18px;
+  }
+}
+
+.ellTxt{
+  display:inline-block;
+  max-width:95%;
+  vertical-align:middle;
+  @include text-ell();
+}
+.underline:hover{
+  cursor:pointer;
+  text-decoration:underline;
+}
+
+.filter-log{
+  display:inline-block;
+  @include wh(90px, 23px, 23px);
+  @include font-style(12px, $white, $fwB);
+}
+
+.default-value{
+  &:after{
+    content:"*";
+    @include font-style(13px, $point-sblue, $fwB);
+  }
+}
+
+.default-bul-list{
+  &>li{
+    padding-left:12px;
+    position:relative;
+
+    &:before{
+      content:'·';
+      position:absolute;
+      left:0;
+      top:0;
+    }
+  }
+}

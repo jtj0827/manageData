@@ -1,0 +1,94 @@
+.b-leftmenu{
+  position:fixed;
+  top:0;
+  bottom:0;
+  background:$left-black;
+  z-index:$left-zidx;
+}
+
+.b-leftMenu-logo{
+  width:#{$left-width + "px"};
+  height:#{$header-height + "px"};
+  border-right:1px solid $bd-black;
+  border-bottom:1px solid $bd-black;
+  text-align:center;
+}
+
+.b-leftMenu-list{
+  position:absolute;
+  width:#{$left-width + "px"};
+  top:#{$header-height + "px"};
+  bottom:0;
+  overflow-y:auto;
+}
+
+.b-leftMenu-list__link{
+  display:inline-block;
+  padding:15px 20px;
+  position:relative;
+  @include wh(100%);
+  @include font-style(14px, $gray9, $fwM);
+
+  &.dp1{
+    border-bottom:1px solid $left-pBlack;
+
+    &.active{
+      color:$left-sblue;
+    }
+  }
+
+  &.dp2{
+    background:$left-pBlack;
+    padding:10px 20px 10px 35px;
+    @include font-style(13px, $aaa, $fwR);
+
+    &.active{
+      color:$white;
+    }
+  }
+
+  &:hover{
+    color:$white;
+  }
+}
+
+.b-leftmenu-listDp1__link--isparent{
+  i{
+    @include po-midY();
+    right:20px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.b-leftmenu-listDp2{
+  border:1px solid $ddd;
+  border-top:none;
+  background:$default-bg-red;
+  padding:10px 0;
+  font-size:15px;
+}
+
+.b-leftmenu-listDp2__link{
+  display:inline-block;
+  padding:4px 20px;
+  @include wh(100%);
+
+  /*&.active{
+    @include font-style(false, $light-green, 500);
+  }*/
+}

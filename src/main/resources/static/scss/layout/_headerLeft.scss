@@ -1,0 +1,118 @@
+/*헤더*/
+.b-header{
+  min-width:1200px;
+  width:100%;
+  z-index:$header-zidx;
+  padding-left:#{$left-width + "px"};
+  position:fixed;
+  top:0;
+}
+
+.b-header-inner{
+  background:$header-black;
+  border-bottom:1px solid $bd-black;
+  height:#{$header-height + "px"} ;
+}
+
+.b-header-mainNav{
+  float:left;
+  &.dis-f{
+    display: flex;
+    float: inherit;
+  }
+}
+  .b-header-mainNav__item{
+    float:left;
+  }
+  .b-header-mainNav__btn{
+    display:inline-block;
+    text-align:center;
+    @include wh(95px, 100%, #{$header-height + "px"});
+    @include font-style(16px, $aaa, $fwR);
+
+    &.active{
+      background:$left-black;
+      color:$white;
+      border-top:5px solid $point-sblue;
+      line-height: #{$header-height - 5 + "px"};
+    }
+  }
+
+.b-header-userNav{
+  float:right;
+}
+  .b-header-userNav__item{
+    margin-right:20px;
+    line-height: #{$header-height + "px"};
+    float:left;
+    @include font-style(14px, $white);
+  }
+  .b-header-userNav__btn{
+    @include font-style(14px, $white);
+  }
+
+
+
+/*레프트메뉴*/
+.b-leftMenu{
+  position:fixed;
+  top:0;
+  bottom:0;
+  background:$left-black;
+  z-index:$left-zidx;
+  @extend %scrollbar-gray;
+}
+
+.b-leftMenu-logo{
+  width:#{$left-width + "px"};
+  height:#{$header-height + "px"};
+  border-right:1px solid $bd-black;
+  border-bottom:1px solid $bd-black;
+  text-align:center;
+}
+
+.b-leftMenu-list{
+  position:absolute;
+  width:#{$left-width + "px"};
+  top:#{$header-height + "px"};
+  bottom:0;
+  overflow-y:auto;
+}
+
+.b-leftMenu-list__link{
+  display:inline-block;
+  padding:15px 20px;
+  position:relative;
+  @include wh(100%);
+  @include font-style(14px, $gray9, $fwM);
+
+  &.dp1{
+    border-bottom:1px solid $left-pBlack;
+
+    &.active{
+      color:$left-sblue;
+    }
+  }
+
+  &.dp2{
+    background:$left-pBlack;
+    padding:10px 20px 10px 35px;
+    @include font-style(13px, $aaa, $fwR);
+
+    &.active{
+      color:$white;
+    }
+  }
+
+  &:hover{
+    color:$white;
+  }
+}
+
+.b-leftmenu-listDp1__link--isparent{
+  i{
+    @include po-midY();
+    right:20px;
+  }
+}
+

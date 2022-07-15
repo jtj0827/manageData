@@ -1,0 +1,47 @@
+//z-index => 모든 layer 의 z-index를 한번에 보기위해 변수사용
+$header-zidx : 11;
+$mask-zidx: 99;
+$left-zidx: 999;
+$left-top-zidx: 9999;
+$front-zidx: 1;
+$back-zidx: -99;
+
+//공통
+$white: #fff;
+$default-font-color : #333;
+$default-bg-color   : #f6f7fa;  //blue
+$default-bg-gray    : #f9f9f9;  //blue<gray
+$default-bg-red     : #f8f8f8;  //red
+$default-bg-light   : #fafafa;  //light
+$default-bg-yello   : #fffcf8;  //yello
+
+//gray color
+$ccc : #ccc;
+$ddd : #ddd;
+$eee : #eee;
+$bbb : #bbb;
+$aaa : #aaa;
+$gray3 : #333;
+$gray4 : #4e4e4e;
+$gray5 : #555;
+$gray6 : #656565;
+$gray7 : #727272;
+$gray8 : #888;
+$gray9 : #999;
+
+//black-color
+$black: #000;
+$black-light: #222;
+
+//red-color
+$red  : red;
+
+//opacity-color
+$black-op:rgba(0,0,0,0.5);
+$black-less-op: rgba(0,0,0,0.2);
+$white-op: rgba(255,255,255,0.5);
+
+
+
+
+

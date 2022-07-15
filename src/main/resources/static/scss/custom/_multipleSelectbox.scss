@@ -1,0 +1,124 @@
+.MultipleSelectBox,.MultipleSelectBox-Disabled {
+  -ms-overflow-style: none;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 5px;  /* 세로축 스크롤바 길이 */
+    height: 8px;  /* 가로축 스크롤바 길이 */
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: $ccc;
+  }
+
+  border: 1px solid transparent;
+  list-style-type: none;
+  margin: 0;
+  padding: 1px 0;
+  background-color: white;
+  color: black;
+
+  input[type="checkbox"]{
+    width:0;
+    height:0;
+    visibility: hidden;
+  }
+
+  &.disabled{
+
+    &:focus{
+      outline:none;
+    }
+
+    &.selecting{
+      border-color:$ddd;
+    }
+
+    li{
+      color:$ddd;
+      cursor:default;
+    }
+    li.selected{
+      background:white;
+      border-color:white;
+    }
+  }
+}
+
+.MultipleSelectBox.harf li{
+  padding: 5px 15px 5px 9px;
+}
+
+.MultipleSelectBox li,.MultipleSelectBox-Disabled li {
+  border:1px solid white;
+  cursor: pointer;
+  padding: 2px 5px;
+  @include font-style(13px, $gray8);
+}
+
+.MultipleSelectBox li.disabled {
+  color: gray;
+  font-style: italic;
+}
+
+.MultipleSelectBox li.optgroup {
+  font-style: italic;
+  font-weight: bold;
+}
+
+.MultipleSelectBox li.selected {
+/*  border: 1px solid #F39814;
+  background-color: #F39814;*/
+  background: #ddd;
+  border-color:#ddd;
+}
+
+.MultipleSelectBox li.selecting {
+  border: 1px dotted black;
+}
+
+.MultipleSelectBox.vertical li.optgroupitem {
+  margin-left: 30px;
+}
+
+/* horizontal mode */
+.MultipleSelectBox.horizontal {
+  height: auto;
+  white-space: nowrap;
+}
+
+.MultipleSelectBox.horizontal li {
+  display: inline-block;
+  /* for IE6 and IE7 */
+  *display: inline;
+  zoom: 1;
+  vertical-align: middle;
+}
+
+.MultipleSelectBox.horizontal li.optgroup {
+  margin-bottom: 10px;
+}
+
+/* popup mode */
+.MultipleSelectBox.popup {
+  background-color: white;
+  display: none;
+  position: absolute;
+  z-index: 1;
+}
+.MultipleSelectBox-Disabled li{
+  cursor: inherit;
+}
+/* Ultimate CSS Gradient Generator (Orange 3D) */
+.MultipleSelectBox li.selected {
+ /* background: #ffa84c;
+  background: -moz-linear-gradient(top, #ffa84c 0%, #ff7b0d 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffa84c), color-stop(100%,#ff7b0d));
+  background: -webkit-linear-gradient(top, #ffa84c 0%,#ff7b0d 100%);
+  background: -o-linear-gradient(top, #ffa84c 0%,#ff7b0d 100%);
+  background: -ms-linear-gradient(top, #ffa84c 0%,#ff7b0d 100%);
+  background: linear-gradient(to bottom, #ffa84c 0%,#ff7b0d 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa84c', endColorstr='#ff7b0d',GradientType=0 );
+  !* for IE6 *!
+  _background: #F39814;*/
+}
