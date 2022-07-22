@@ -1,30 +1,34 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../../include/header.jsp" %>
-<script src="/resources/js/serverMng/info/serverCommon.js" type="text/babel"></script>
+<script src="/resources/js/customerService/board/list.js" type="text/babel"></script>
 <!--header, leftMenu 제외한 컨텐츠 영역 <section class="l-content-area">-->
 <section class="l-content-area">
 
     <!--메인타이틀 영역 <h1 class="main-title">-->
-    <h1 class="main-title">서버 정보 관리</h1>
+    <h1 class="main-title">고객 정보 관리</h1>
 
-<%--    <div class="l-maxwrap">--%>
-    <div>
+
+    <div class="l-maxwrap">
         <div class="b-listSearchForm">
             <div class="b-listSearchForm__inner">
-                <form id="commonForm"></form>
                 <form id="searchForm">
                     <input type="hidden" name="pageSize" value="${paging.pageSize}">
                     <div class="b-form-group">
                         <div class="b-form-group__item">
                             <label>검색 조건</label>
+                            <div class="inline-group">
+                                <select name="useYn" class="default-input w100">
+                                    <option value="">게시여부</option>
+                                    <option value="Y" ${param.useYn eq 'Y' ? 'selected' : ''}>게시</option>
+                                    <option value="N" ${param.useYn eq 'N' ? 'selected' : ''}>미게시</option>
+                                </select>
+                            </div>
 
                             <div class="inline-group">
-                                <select name="searchType" class="default-input w120">
+                                <select name="searchType" class="default-input w100">
                                     <option value="">전체</option>
-                                    <option value="name" ${param.searchType eq 'name' ? 'selected' : ''}>서버명칭</option>
-                                    <option value="ip" ${param.searchType eq 'ip' ? 'selected' : ''}>IP</option>
-                                    <option value="cpu" ${param.searchType eq 'cpu' ? 'selected' : ''}>CPU</option>
-                                    <option value="ram" ${param.searchType eq 'ram' ? 'selected' : ''}>RAM</option>
+                                    <option value="subject" ${param.searchType eq 'subject' ? 'selected' : ''}>제목</option>
+                                    <option value="regId" ${param.searchType eq 'regId' ? 'selected' : ''}>작성자</option>
                                 </select>
 
                                 <input type="text" class="default-input w200" name="searchText" value="${param.searchText}" maxlength="100">
@@ -43,15 +47,12 @@
                         </div>
                     </div>
                 </form>
-
                 <form id="pageForm">
                     <input type="hidden" name="pageNo">
                     <input type="hidden" name="pageSize" value="${paging.pageSize}">
-                    <input type="hidden" name="useGubunCode" value="${param.useGubunCode}">
+                    <input type="hidden" name="useYn" value="${param.useYn}">
                     <input type="hidden" name="searchType" value="${param.searchType}">
                     <input type="hidden" name="searchText" value="${param.searchText}">
-                    <input type="hidden" name="sortBy" value="${param.sortBy}">
-                    <input type="hidden" name="ownerIdx" value="${param.ownerIdx}">
                 </form>
             </div><!--b-listSearchForm__inner-->
 
@@ -69,66 +70,59 @@
                 </div>
 
                 <div class="b-tableWrap">
-
-                    <table class="b-listTable plus">
+                    <table class="b-listTable">
                         <caption class="offscreen">게시글 목록</caption>
                         <colgroup>
-                            <col width="5%"> <%--번호--%>
-                            <col width="15%"><%--서버명칭--%>
-                            <col width="10%"><%--CPU--%>
-                            <col width="10%"><%--RAM--%>
-                            <col width="10%"><%--HDD--%>
-                            <col width="15%"><%--IP--%>
-                            <col width="10%"><%--등록자--%>
-                            <col width="10%"><%--등록일자--%>
+                            <col width="5%">
+                            <col width="15%">
+                            <col width="15%">
+                            <col width="15%">
+                            <col width="15%">
+                            <col width="10%">
                         </colgroup>
                         <thead>
                         <tr>
                             <th>번호</th>
-                            <th>서버명칭</th>
-                            <th>CPU</th>
-                            <th>RAM</th>
-                            <th>HDD</th>
-                            <th>IP</th>
-                            <th>등록자</th>
+                            <th>이름</th>
+                            <th>핸드폰 번호</th>
+                            <th>E-MAIL</th>
                             <th>등록일자</th>
-
+                            <th>등록자</th>
                         </tr>
                         </thead>
                         <tbody>
                         <c:if test="${totalCount == 0}">
                             <tr>
-                                <td colspan="9" class="nodata">데이터가 존재하지 않습니다.</td>
+                                <td colspan="6" class="nodata">데이터가 존재하지 않습니다.</td>
                             </tr>
                         </c:if>
-                        <c:forEach var="serverInfo" items="${serverList}" varStatus="status">
-                            <tr class="pointer" onclick="moveServerView(${serverInfo.serverIdx})">
-                                <td class="a_center">
-                                    <%--번호--%>
-                                    ${(totalCount-status.index) - ((paging.pageNo-1) * paging.pageSize)}
-                                </td>
-                                <td class="a-center">
-                                    ${serverInfo.name}
-                                </td>
-                                <td class="a-center">
-                                    ${serverInfo.cpu}
-                                </td>
-                                <td class="a-center">
-                                    ${serverInfo.ram}
-                                </td>
-                                <td class="a-center">
-                                    ${serverInfo.hdd}
-                                </td>
-                                <td class="a-center">
-                                    ${serverInfo.ip}
-                                </td>
-                                <td class="a-center">
-                                    ${serverInfo.regId}
-                                </td>
-                                <td class="a-center">
-                                    ${serverInfo.formatedRegDate}
-                                </td>
-                            </tr>
+                        <c:forEach var="info" items="${infoList}" varStatus="status">
+                        <tr class="pointer" onclick="moveServerView(${serverInfo.serverIdx})">
+                            <td>
+                                <%--번호--%>
+                                ${(totalCount-status.index) - ((paging.pageNo-1) * paging.pageSize)}
+                            </td>
+                            <td>
+                                <%--이름--%>
+                                ${info.name}
+                            </td>
+                            <td>
+                                <%--핸드폰 번호--%>
+                                ${info.phoneNum}
+                            </td>
+                            <td>
+                                <%--E-MAIL--%>
+                                ${info.email}
+                            </td>
+                            <td>
+                                <%--등록일자--%>
+                                ${info.formatedRegDate}
+                            </td>
+                            <td>
+                                <%--등록자--%>
+                                ${info.regId}
+                            </td>
+                        </tr>
                         </c:forEach>
                         </tbody>
                     </table>
@@ -139,6 +133,7 @@
                     <%@ include file="../../include/paging.jsp" %>
                 </div>
 
+                <%-- LINE :: 답변형 게시판 아닌 경우에만 등록버튼 활성화 --%>
                 <input type="button" class="trn btn-baseRound btn-add mt20 w80" value="등록" onclick="location.href='form'">
 
             </div><%--b-list--%>

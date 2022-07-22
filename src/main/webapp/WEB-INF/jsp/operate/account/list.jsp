@@ -5,7 +5,7 @@
 <section class="l-content-area">
 
     <!--메인타이틀 영역 <h1 class="main-title">-->
-    <h1 class="main-title">계정 관리</h1>
+    <h1 class="main-title">고객 정보 관리</h1>
 
 
     <div class="l-maxwrap">

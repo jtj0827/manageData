@@ -168,7 +168,7 @@ input.mail_letter_press {width:18px; height:18px; background:url('/static/images
 input.mail_file {width:18px; height:18px; background:url('/static/images/icon/mail_file.png'); border:none;}
 input.mail_blank {width:18px; height:18px; background:url('/static/images/icon/blank.png'); border:none;}
 
-.wfull {width:100%;} .w25 {width:25px;}.w30 {width:30px;}.w50 {width:50px;}.w55 {width:55px;}.w60 {width:60px;}.w70 {width:70px;}.w76 {width:76px;}.w80 {width:80px;}.w90 {width:90px;}.w100 {width:100px;}
+.wfull {width:100%;} .w25 {width:25px;}.w30 {width:30px;} .w50 {width:40px;}.w50 {width:50px;}.w55 {width:55px;}.w60 {width:60px;}.w70 {width:70px;}.w76 {width:76px;}.w80 {width:80px;}.w90 {width:90px;}.w100 {width:100px;}
 .w110 {width:110px;}
 .w120 {width:120px;}
 .w130 {width:130px;}
