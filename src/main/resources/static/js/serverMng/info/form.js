@@ -29,11 +29,6 @@ const saveConfirm = () => {
  * FUCNTION :: 서버정보 등록
  */
 const save = () => {
-    const autoCommaInput = document.querySelectorAll(".autoComma");
-    for (let i = 0; i < autoCommaInput.length; i++) {
-        autoCommaInput[i].value = autoCommaInput[i].value.replace(/,/gi, "");
-    }
-
     let httpCode = AJAX_RESULT_FAIL;
     let idx = 0;
     const formData = new FormData( document.getElementById("saveForm") );

@@ -12,6 +12,6 @@
     <select id="countByDto" parameterType="ServerInfo" resultType="int">
         SELECT count(*)
         FROM tcustomer_info cti
-        WHERE svr.del_status = false
+        WHERE cti.del_status = false
     </select>
 </mapper>

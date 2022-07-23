@@ -13,8 +13,7 @@ import java.util.Date;
 @Table(name = "tcustomerInfo")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicUpdate
-@Getter
-@ToString
+@Getter @ToString
 public class CustomerInfoEntity {
 
     @Id
@@ -23,7 +22,7 @@ public class CustomerInfoEntity {
     private Long idx;                                               // LINE :: 고유값
 
     @Column(length = 10)
-    private String name;                                            // LINE :: 고객명
+    private String customerName;                                    // LINE :: 고객명
 
     @Column(length = 13)
     private String phoneNum;                                        // LINE :: 고객 핸드폰번호
@@ -39,13 +38,13 @@ public class CustomerInfoEntity {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date regDate;                                           // LINE :: 등록일
 
-    @Column(columnDefinition = "bit default '0'")
+    @Column(columnDefinition = "bit default 0")
     private Boolean delStatus;                                      // LINE :: 삭제여부
 
 
     @Builder
     public CustomerInfoEntity(CustomerInfo info){
-        this.name = info.getName();
+        this.customerName = info.getCustomerName();
         this.phoneNum = info.getPhoneNum();
         this.email = info.getEmail();
         this.regId = info.getRegId();
@@ -53,7 +52,7 @@ public class CustomerInfoEntity {
     }
 
     public void setModInfo(CustomerInfo info){
-        this.name = info.getName();
+        this.customerName = info.getCustomerName();
         this.phoneNum = info.getPhoneNum();
         this.email = info.getEmail();
         this.regId = info.getRegId();
