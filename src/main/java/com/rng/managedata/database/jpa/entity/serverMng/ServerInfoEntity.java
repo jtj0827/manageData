@@ -105,7 +105,6 @@ public class ServerInfoEntity {
         this.osPwd = dto.getOsPwd();
         this.note = dto.getNote();
         this.regId = dto.getRegId();
-        this.regDate = dto.getRegDate();
         this.receivingDate = dto.getReceivingDate();
     }
 
