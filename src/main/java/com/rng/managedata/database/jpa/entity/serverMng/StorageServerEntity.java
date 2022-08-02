@@ -12,7 +12,7 @@ import java.util.Date;
 @Table(name = "tstorageServer")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicUpdate
-@Getter @Setter
+@Getter
 public class StorageServerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
