@@ -3,13 +3,13 @@
 <mapper namespace="com.rng.managedata.database.mybatis.mapper.customer.CustomerInfoMapper">
 
     <!-- 관리자 계정 카운트 조회 -->
-    <select id="findByDto" parameterType="ServerInfo" resultType="ServerInfo">
+    <select id="findByDto" parameterType="CustomerInfo" resultType="CustomerInfo">
         SELECT cti.*
         FROM tcustomer_info cti
         WHERE cti.del_status = false
         LIMIT #{firstIndex}, #{pageSize}
     </select>
-    <select id="countByDto" parameterType="ServerInfo" resultType="int">
+    <select id="countByDto" parameterType="CustomerInfo" resultType="int">
         SELECT count(*)
         FROM tcustomer_info cti
         WHERE cti.del_status = false

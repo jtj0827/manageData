@@ -112,9 +112,9 @@ const setPageSize = () => {
     pageForm.submit();
 }
 
-const moveView = (idx) => {
+const moveView = (idx, columnName) => {
     sessionStorage.setItem("temp_uri", location.href);
-    location.href = `view?idx=${idx}`;
+    location.href = `view?${columnName}=${idx}`;
 }
 
 /**

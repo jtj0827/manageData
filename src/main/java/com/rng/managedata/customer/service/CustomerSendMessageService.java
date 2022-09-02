@@ -1,8 +1,12 @@
 package com.rng.managedata.customer.service;
 
 import com.rng.managedata.common.service.CommonService;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+@Service
+@AllArgsConstructor
 public class CustomerSendMessageService extends CommonService {
 
     /**
@@ -11,6 +15,7 @@ public class CustomerSendMessageService extends CommonService {
      * @return
      */
     public String list(Model model){
+        model.addAttribute("sendMsgLog", "");
         return "";
     }
 

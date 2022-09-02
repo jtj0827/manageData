@@ -97,28 +97,28 @@
                             </tr>
                         </c:if>
                         <c:forEach var="info" items="${infoList}" varStatus="status">
-                        <tr class="pointer" onclick="moveServerView(${serverInfo.serverIdx})">
-                            <td>
+                        <tr class="pointer" onclick="moveView(${info.customerIdx}, 'customerIdx')">
+                            <td class="a-center">
                                 <%--번호--%>
                                 ${(totalCount-status.index) - ((paging.pageNo-1) * paging.pageSize)}
                             </td>
-                            <td>
+                            <td class="a-center">
                                 <%--이름--%>
-                                ${info.name}
+                                ${info.customerName}
                             </td>
-                            <td>
+                            <td class="a-center">
                                 <%--핸드폰 번호--%>
                                 ${info.phoneNum}
                             </td>
-                            <td>
+                            <td class="a-center">
                                 <%--E-MAIL--%>
                                 ${info.email}
                             </td>
-                            <td>
+                            <td class="a-center">
                                 <%--등록일자--%>
                                 ${info.formatedRegDate}
                             </td>
-                            <td>
+                            <td class="a-center">
                                 <%--등록자--%>
                                 ${info.regId}
                             </td>

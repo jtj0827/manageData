@@ -47,7 +47,7 @@ public class LoginService extends CommonService {
      */
     public String login(AccountEntity loginInfo) {
         Map<String, Object> rtnMap = returnMap();
-        AccountEntity account = accountRepository.findByIdAndStep(loginInfo.getId(), "K");
+        AccountEntity account = accountRepository.findById(loginInfo.getId());
 
         String clientIP = getClientIP();
 

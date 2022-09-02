@@ -11,7 +11,7 @@ import java.util.Date;
 
 @Getter @Setter @ToString
 public class CustomerInfo extends Paging {
-    private Long idx;                                               // LINE :: 고유값
+    private Long customerIdx;                                       // LINE :: 고유값
 
     private String customerName;                                    // LINE :: 고객명
 
@@ -23,8 +23,10 @@ public class CustomerInfo extends Paging {
 
     private Date regDate;                                           // LINE :: 등록일
 
+    private String inflowPathCode;                                  // LINE :: 유입경로
+
     public CustomerInfo EntityToDto(CustomerInfoEntity entity){
-        this.idx = entity.getIdx();
+        this.customerIdx = entity.getIdx();
         this.customerName = entity.getCustomerName();
         this.phoneNum = entity.getPhoneNum();
         this.email = entity.getEmail();

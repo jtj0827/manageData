@@ -1,5 +1,6 @@
 package com.rng.managedata.database.mybatis.dto.common;
 
+import com.rng.managedata.database.jpa.entity.common.MemberEntity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -16,4 +17,5 @@ public class Member {
     private String email;                                           // LINE :: 이메일 주소
     private Account accountObject;                                  // LINE :: 계정 객체
     private String departmentCode;                                  // LINE :: 부서코드
+
 }

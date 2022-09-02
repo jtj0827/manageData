@@ -3,6 +3,7 @@ package com.rng.managedata.customer.service;
 import com.rng.managedata.common.service.CommonService;
 import com.rng.managedata.database.jpa.entity.customer.CustomerInfoEntity;
 import com.rng.managedata.database.jpa.repository.common.CommonCodeRepository;
+import com.rng.managedata.database.jpa.repository.common.MemberRepository;
 import com.rng.managedata.database.jpa.repository.customer.CustomerInfoRepository;
 import com.rng.managedata.database.mybatis.dto.customer.CustomerInfo;
 import com.rng.managedata.database.mybatis.mapper.customer.CustomerInfoMapper;
@@ -21,6 +22,8 @@ public class CustomerDataService extends CommonService {
     private final CustomerInfoRepository customerInfoRepository;
 
     private final CommonCodeRepository commonCodeRepository;
+
+    private final MemberRepository memberRepository;
 
     /**
      * FUNCTION :: 고객정보 리스트페이지 호출
@@ -44,7 +47,7 @@ public class CustomerDataService extends CommonService {
      * @return
      */
     public String view(Model model, CustomerInfo customerInfo) {
-        CustomerInfoEntity infoEntity = customerInfoRepository.findByIdx(customerInfo.getIdx());
+        CustomerInfoEntity infoEntity = customerInfoRepository.findByIdx(customerInfo.getCustomerIdx());
         model.addAttribute("info", new CustomerInfo().EntityToDto(infoEntity));     // LINE :: 고객 상세정보 Entity객체 DTO로 변환해서 리턴
         return "/customer/info/view";
     }
@@ -57,7 +60,7 @@ public class CustomerDataService extends CommonService {
      * @return
      */
     public String form(Model model, CustomerInfo customerInfo) {
-        CustomerInfoEntity infoEntity = customerInfoRepository.findByIdx(customerInfo.getIdx());
+        CustomerInfoEntity infoEntity = customerInfoRepository.findByIdx(customerInfo.getCustomerIdx());
         model.addAttribute("inflowList", commonCodeRepository.findAllByGubunOrderByCodeDesc("IF"));                 // LINE :: 유입경로 목록
         model.addAttribute("departmentInChargeList", commonCodeRepository.findAllByGubunOrderByCodeDesc("DC"));     // LINE :: 담당부서 목록
         if (infoEntity != null) {
@@ -75,7 +78,14 @@ public class CustomerDataService extends CommonService {
     public String save(CustomerInfo customerInfo) {
         // LINE :: 조직도 기능 추가후 기능구현 예정
         Map<String, Object> rtnMap = returnMap();
-
+        CustomerInfoEntity infoEntity = CustomerInfoEntity.builder()
+                .info(customerInfo)
+                .regId(getLoginInfo().getId())
+                .inflowPathCode(commonCodeRepository.findByCode(customerInfo.getInflowPathCode()))
+                .build();
+        Long customerIdx = customerInfoRepository.save(infoEntity).getIdx();
+        rtnMap.put(AJAX_RESULT_TEXT, AJAX_RESULT_SUCCESS);
+        rtnMap.put("idx", customerIdx);
         return jsonFormatTransfer(rtnMap);
     }
 
@@ -87,7 +97,7 @@ public class CustomerDataService extends CommonService {
      */
     public String delete(CustomerInfo customerInfo) {
         Map<String, Object> rtnMap = returnMap();
-        CustomerInfoEntity info = customerInfoRepository.findByIdx(customerInfo.getIdx());
+        CustomerInfoEntity info = customerInfoRepository.findByIdx(customerInfo.getCustomerIdx());
         if (info != null) {
             info.delete();
             rtnMap.put(AJAX_RESULT_TEXT, AJAX_RESULT_SUCCESS);
@@ -104,9 +114,16 @@ public class CustomerDataService extends CommonService {
      * @return
      */
     public String getContactInfo(String code) {
-        // LINE :: 조직도기능 추가후 기능구현예정
         Map<String, Object> rtnMap = returnMap();
 
+        // LINE :: 부서코드 널체크
+        if(code == null || code.isEmpty()){
+            rtnMap.put(AJAX_RESULT_TEXT, AJAX_RESULT_NODATA);
+            return jsonFormatTransfer(rtnMap);
+        }
+        // LINE :: 부서 코드로 검색(이름 DESC)
+        rtnMap.put("contactList", memberRepository.findByDepartmentCodeOrderByNameDesc(code));
+        rtnMap.put(AJAX_RESULT_TEXT, AJAX_RESULT_SUCCESS);
         return jsonFormatTransfer(rtnMap);
     }
 }

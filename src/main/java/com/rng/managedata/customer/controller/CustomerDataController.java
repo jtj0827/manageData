@@ -48,7 +48,7 @@ public class CustomerDataController {
      * @param info
      * @return
      */
-    @PostMapping(value = "/")
+    @PostMapping(value = {"/", ""})
     @ResponseBody
     public String save(CustomerInfo info) {return customerDataService.save(info);}
 

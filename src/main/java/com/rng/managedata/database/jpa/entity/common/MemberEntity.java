@@ -41,6 +41,9 @@ public class MemberEntity {
     @Column(length = 100)
     private String email;                                           // LINE :: 이메일 주소
 
-    @Column(length = 6)
+    @Column(length = 4)
     private String departmentCode;                                  // LINE :: 부서코드
+
+    @Column(columnDefinition = "bit default 0")
+    private Boolean operatorYn;                                     // LINE :: 유지보수 담당자 여부
 }

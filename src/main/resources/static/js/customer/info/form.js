@@ -38,7 +38,7 @@ const selectDepartmentChargeCode = (obj, targetId) => {
             let httpCode = json[AJAX_RESULT_TEXT];
             const contactData = json['contactList'];
             if (httpCode == AJAX_RESULT_SUCCESS) {
-                for(let contact in contactData){
+                for(let contact of contactData){
                     optionHtml += `<option value="${contact.idx}">${contact.name}</option>`;
                 }
                 target.innerHTML = optionHtml;
@@ -56,8 +56,8 @@ const selectDepartmentChargeCode = (obj, targetId) => {
  * @returns {boolean}
  */
 const saveConfirm = () => {
-    if (!confirm(`${alertTxt} 하시겠습니까?`)) { return false; }
     if (!blankCheckRequiredValue()) { return false; }
+    if (!confirm(`${alertTxt} 하시겠습니까?`)) { return false; }
     save();
 }
 

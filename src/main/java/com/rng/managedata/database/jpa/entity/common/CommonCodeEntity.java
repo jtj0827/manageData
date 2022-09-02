@@ -1,15 +1,13 @@
 package com.rng.managedata.database.jpa.entity.common;
 
+import com.rng.managedata.database.jpa.entity.customer.CustomerInfoEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.util.StringUtils;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "tcommonCode")
@@ -26,6 +24,7 @@ public class CommonCodeEntity {
     @Column(length = 4)
     private String gubun;                              // LINE :: 구분(코드 구분 값. BK : 은행코드, LC : 지역코드, BI : 업종코드)
     @Column private Integer depth;                     // LINE :: 코드 depth (1 > 2 > 3 ..)
+
 
     @Builder
     public CommonCodeEntity(String code, String topCode, String codeExp, String gubun, Integer depth){
