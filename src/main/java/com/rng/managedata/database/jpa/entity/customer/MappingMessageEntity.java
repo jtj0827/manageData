@@ -13,18 +13,25 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@IdClass(MessagePk.class)
 @Table(name = "tmessageMapping")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @ToString
 public class MappingMessageEntity {
-    @Id private CustomerSendMessageEntity msgLog;
-    @Id private CustomerInfoEntity customerInfo;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "map_idx")
+    private Long id;
+
+    @MapsId
+    @ManyToOne(fetch = FetchType.LAZY)
+    private CustomerSendMessageEntity msgLog;
+    @MapsId
+    @ManyToOne(fetch = FetchType.LAZY)
+    private CustomerInfoEntity customerInfo;
     @Column
     @CreationTimestamp
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date regDate;
-
 
 }

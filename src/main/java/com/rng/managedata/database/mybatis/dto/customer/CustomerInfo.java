@@ -1,6 +1,8 @@
 package com.rng.managedata.database.mybatis.dto.customer;
 
+import com.rng.managedata.database.jpa.entity.common.CommonCodeEntity;
 import com.rng.managedata.database.jpa.entity.customer.CustomerInfoEntity;
+import com.rng.managedata.database.jpa.repository.common.CommonCodeRepository;
 import com.rng.managedata.database.mybatis.dto.common.Paging;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,6 +27,10 @@ public class CustomerInfo extends Paging {
 
     private String inflowPathCode;                                  // LINE :: 유입경로
 
+    private String departmentInCharge;                              // LINE :: 담당부서
+
+    private String contactAccountIdx;                               // LINE :: 담당자명
+
     public CustomerInfo EntityToDto(CustomerInfoEntity entity){
         this.customerIdx = entity.getIdx();
         this.customerName = entity.getCustomerName();
@@ -32,6 +38,8 @@ public class CustomerInfo extends Paging {
         this.email = entity.getEmail();
         this.regId = entity.getRegId();
         this.regDate = entity.getRegDate();
+        this.inflowPathCode = entity.getInflowPathCode();
+        this.departmentInCharge = entity.getDepartmentInCharge();
         return this;
     }
 

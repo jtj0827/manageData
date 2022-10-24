@@ -25,7 +25,7 @@ public class ServerInfoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "server_idx")
     private Long idx;                                               // LINE :: 고유값
-    @OneToMany(mappedBy = "serverInfo", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "serverInfo", cascade = CascadeType.ALL)
     private List<StorageServerEntity> storageServerList = new ArrayList<>();
     @Column(length = 200) private String ip;                        // LINE :: IP (다중등록 콤마로 구분)
     @Column(length = 100) private String name;                      // LINE :: 서버명칭

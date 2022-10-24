@@ -30,6 +30,6 @@ public class CustomerSendMessageEntity {
     @CreationTimestamp
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date regDate;                                           // LINE :: 등록일
-    @OneToMany(mappedBy = "msgLog", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "msgLog", cascade = CascadeType.ALL)
     private List<MappingMessageEntity> relay = new ArrayList<>();   // LINE :: 중계 테이블 (사용자 정보, 메세지 로그)
 }

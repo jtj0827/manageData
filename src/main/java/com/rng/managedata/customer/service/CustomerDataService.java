@@ -48,6 +48,9 @@ public class CustomerDataService extends CommonService {
      */
     public String view(Model model, CustomerInfo customerInfo) {
         CustomerInfoEntity infoEntity = customerInfoRepository.findByIdx(customerInfo.getCustomerIdx());
+        model.addAttribute("inflowList", commonCodeRepository.findAllByGubunOrderByCodeDesc("IF"));                 // LINE :: 유입경로 목록
+        model.addAttribute("departmentInChargeList", commonCodeRepository.findAllByGubunOrderByCodeDesc("DC"));     // LINE :: 담당부서 목록
+        model.addAttribute("memberInfo", memberRepository.findByDepartmentCodeOrderByNameDesc(infoEntity.getDepartmentInCharge()));           // LINE :: 담당자 목록
         model.addAttribute("info", new CustomerInfo().EntityToDto(infoEntity));     // LINE :: 고객 상세정보 Entity객체 DTO로 변환해서 리턴
         return "/customer/info/view";
     }
@@ -81,7 +84,6 @@ public class CustomerDataService extends CommonService {
         CustomerInfoEntity infoEntity = CustomerInfoEntity.builder()
                 .info(customerInfo)
                 .regId(getLoginInfo().getId())
-                .inflowPathCode(commonCodeRepository.findByCode(customerInfo.getInflowPathCode()))
                 .build();
         Long customerIdx = customerInfoRepository.save(infoEntity).getIdx();
         rtnMap.put(AJAX_RESULT_TEXT, AJAX_RESULT_SUCCESS);

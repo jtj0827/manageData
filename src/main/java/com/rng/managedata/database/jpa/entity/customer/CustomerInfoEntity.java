@@ -1,5 +1,6 @@
 package com.rng.managedata.database.jpa.entity.customer;
 
+import com.rng.managedata.database.jpa.entity.common.AccountEntity;
 import com.rng.managedata.database.jpa.entity.common.CommonCodeEntity;
 import com.rng.managedata.database.mybatis.dto.customer.CustomerInfo;
 import lombok.*;
@@ -17,7 +18,8 @@ import java.util.List;
 @Table(name = "tcustomerInfo")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicUpdate
-@Getter @ToString
+@Getter
+@ToString
 public class CustomerInfoEntity {
 
     @Id
@@ -45,31 +47,40 @@ public class CustomerInfoEntity {
     @Column(columnDefinition = "bit default 0")
     private Boolean delStatus = false;                              // LINE :: 삭제여부
 
-    @OneToMany(mappedBy = "customerInfo", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customerInfo", cascade = CascadeType.ALL)
     private List<MappingMessageEntity> relay = new ArrayList<>();   // LINE :: 중계 테이블 (사용자 정보, 메세지 로그)
 
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "code")
-    private CommonCodeEntity inflowPathCode;                // LINE :: 유입경로
+    @Column(length = 4)
+    private String inflowPathCode;                  // LINE :: 유입경로
+
+    @Column(length = 4)
+    private String departmentInCharge;              // LINE :: 담당부서
+
+    @Column
+    private Long contactAccountIdx;
 
     @Builder
-    public CustomerInfoEntity(CustomerInfo info, String regId, CommonCodeEntity inflowPathCode){
+    public CustomerInfoEntity(CustomerInfo info, String regId) {
         this.customerName = info.getCustomerName();
         this.phoneNum = info.getPhoneNum();
         this.email = info.getEmail();
         this.regId = regId;
         this.regDate = info.getRegDate();
-        this.inflowPathCode = inflowPathCode;
+        this.inflowPathCode = info.getInflowPathCode();
+        this.departmentInCharge = info.getDepartmentInCharge();
     }
 
-    public void setModInfo(CustomerInfo info){
+    public void setModInfo(CustomerInfo info) {
         this.customerName = info.getCustomerName();
         this.phoneNum = info.getPhoneNum();
         this.email = info.getEmail();
         this.regId = info.getRegId();
         this.regDate = info.getRegDate();
+        this.departmentInCharge = info.getDepartmentInCharge();
     }
 
-    public void delete(){this.delStatus = true;}
+    public void delete() {
+        this.delStatus = true;
+    }
 }
